@@ -109,7 +109,7 @@ use(run) the following in terminal in order to run your test
         - The first word should show the main change or task done some thing like Feature,         Fixing, Refactor, configuration and so on
           Example: 
           - if i add a new feature called "Customer registration", my commit message should look like
-                 ```bash
+                 ```
                     [Feature] Added Customer registration
                  ```
         - If you have completed more than one feature or main changes, start the above
