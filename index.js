@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const customers = require("./routes/customers")
+const categories = require("./routes/categories")
 const express = require("express");
 const app = express();
 
@@ -9,6 +10,7 @@ mongoose.connect('mongodb://localhost/chrs')
 
 app.use(express.json());  // this enables pasrsing of json object in the body of a request.
 app.use("/api/customers", customers)
+app.use("/api/categories", categories)
 
 app.get("/", (req, res) => {
   res.send("Central customer reservation system");
