@@ -7,8 +7,7 @@ const categorySchema = new mongoose.Schema({
         required: true,
         trim: true,
         minlength: 5,
-        maxlength: 255,
-        unique: true,
+        maxlength: 255
     }
 })
 
@@ -22,5 +21,6 @@ function validateCategory(category) {
     return Joi.validate(category, schema)
 }
 
+exports.categorySchema = categorySchema;
 exports.Category = Category;
 exports.validate = validateCategory;
