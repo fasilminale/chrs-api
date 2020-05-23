@@ -1,6 +1,6 @@
 # chrs-api
 
-This project is the backend of Central hotel reservation system.
+This is the backend of Central Hotel Reservation system.
 
 ## Pre requests
 In order to collaborate or use this project, you should fulfill the following pre requests
