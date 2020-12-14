@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
-import { roomNameSchema } from "./roomName";
-import { roomTypeSchema } from "./roomType";
-import { bedTypeSchema } from "./bedType";
-import { facilitySchema } from "./facility";
+
+const roomNameSchema = require("./roomName");
+const roomTypeSchema = require("./roomType");
+const bedTypeSchema = require("./bedType");
+const facilitySchema = require("./facility");
 
 const roomSchema = new mongoose.Schema({
   name: {
@@ -46,7 +47,7 @@ const roomSchema = new mongoose.Schema({
     type: bedTypeSchema,
   },
   amenities: {
-    type: [facilitySchema],
+    type: facilitySchema,
   },
   hotel: {
     type: mongoose.Schema.Types.ObjectId,
