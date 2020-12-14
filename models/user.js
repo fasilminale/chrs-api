@@ -1,48 +1,44 @@
-const mongoose = required("mongoose");
-const Joi = required("joi");
+const config = require("config");
+const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const Joi = require("joi");
 
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    requiredd: true,
-    minlength: 25,
+    required: true,
+    minlength: 5,
     maxlength: 50,
   },
   lastName: {
     type: String,
-    requiredd: true,
-    minlength: 25,
+    required: true,
+    minlength: 5,
     maxlength: 50,
   },
   email: {
     type: String,
-    requiredd: true,
-    minlength: 25,
-    maxlength: 50,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
   },
   password: {
     type: String,
-    requiredd: true,
-    minlength: 8,
-    maxlength: 15,
+    required: true,
+    minlength: 5,
+    maxlength: 255,
   },
   phone: {
     type: String,
-    requiredd: true,
-    minlength: 8,
+    required: true,
     maxlength: 15,
   },
   photo: {
     type: String,
-    requiredd: true,
-    minlength: 8,
-    maxlength: 15,
   },
   birthDate: {
     type: Date,
-    requiredd: true,
-    minlength: 8,
-    maxlength: 15,
+    required: true,
   },
   isCustomer: Boolean,
   isHotelAdmin: Boolean,
@@ -71,7 +67,7 @@ function validateUser(user) {
     email: Joi.string().min(5).max(255).required().email(),
     password: Joi.string().min(5).max(255).required(),
     phone: Joi.string().max(15).required(),
-    photo: Joi.string().required(),
+    photo: Joi.string(),
     birthDate: Joi.date().required(),
   };
   return Joi.validate(user, schema);
