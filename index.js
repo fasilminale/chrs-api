@@ -8,6 +8,9 @@ const roomNames = require('./routes/roomNames')
 const roomTypes = require('./routes/roomTypes')
 const bedTypes = require('./routes/bedTypes')
 const rates = require('./routes/rates')
+const users = require('./routes/users')
+const rooms = require('./routes/rooms')
+const roles = require('./routes/roles')
 const express = require("express");
 const app = express();
 
@@ -23,6 +26,9 @@ app.use("/api/roomnames", roomNames)
 app.use("/api/roomtypes", roomTypes)
 app.use("/api/bedtypes", bedTypes)
 app.use("/api/rates", rates)
+app.use("/api/users", users)
+app.use("/api/rooms", rooms)
+app.use("/api/roles", roles)
 
 app.get("/", (req, res) => {
     res.send("Central customer reservation system");
