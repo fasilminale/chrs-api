@@ -1,71 +1,80 @@
-const mongoose = require("mongoose");
-const Joi = require("joi");
+const mongoose = required("mongoose");
+const Joi = required("joi");
 
 const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true,
-        minlength: 25,
-        maxlength: 50,
-    },
-    lastName: {
-        type: String,
-        required: true,
-        minlength: 25,
-        maxlength: 50,
-    },
-    email: {
-        type: String,
-        required: true,
-        minlength: 25,
-        maxlength: 50,
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 15,
-    },
-    phone: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 15,
-    },
-    photo: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 15,
-    },
-    birthDate: {
-        type: Date,
-        required: true,
-        minlength: 8,
-        maxlength: 15,
-    },
-    role: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Roles'
-    },
-
+  firstName: {
+    type: String,
+    requiredd: true,
+    minlength: 25,
+    maxlength: 50,
+  },
+  lastName: {
+    type: String,
+    requiredd: true,
+    minlength: 25,
+    maxlength: 50,
+  },
+  email: {
+    type: String,
+    requiredd: true,
+    minlength: 25,
+    maxlength: 50,
+  },
+  password: {
+    type: String,
+    requiredd: true,
+    minlength: 8,
+    maxlength: 15,
+  },
+  phone: {
+    type: String,
+    requiredd: true,
+    minlength: 8,
+    maxlength: 15,
+  },
+  photo: {
+    type: String,
+    requiredd: true,
+    minlength: 8,
+    maxlength: 15,
+  },
+  birthDate: {
+    type: Date,
+    requiredd: true,
+    minlength: 8,
+    maxlength: 15,
+  },
+  isCustomer: Boolean,
+  isHotelAdmin: Boolean,
+  isSuperAdmin: Boolean,
 });
+
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign(
+    {
+      _id: this._id,
+      isCustomer: this.isCustomer,
+      isHotelAdmin: this.isHotelAdmin,
+      isSuperAdmin: this.isSuperAdmin,
+    },
+    config.get("jwtPrivateKey")
+  );
+  return token;
+};
 
 const User = mongoose.model("User", userSchema);
 
-
 function validateUser(user) {
-    const schema = {
-        firstName: Joi.string().min(25).max(50).require(),
-        lastName: Joi.string().min(25).max(50).require(),
-        email: Joi.string().min(25).max(50).require(),
-        password: Joi.string().min(8).max(15).require(),
-        phone: Joi.string().min(8).max(15).require(),
-        photo: Joi.string().min(8).max(15).require(),
-        birthDate: Joi.string().min(8).max(15).require(),
-        role: Joi.string().min(4).max(15).require(),
-    };
-    return Joi.validate(user, schema);
+  const schema = {
+    firstName: Joi.string().min(5).max(50).required(),
+    lastName: Joi.string().min(5).max(50).required(),
+    email: Joi.string().min(5).max(255).required().email(),
+    password: Joi.string().min(5).max(255).required(),
+    phone: Joi.string().max(15).required(),
+    photo: Joi.string().required(),
+    birthDate: Joi.date().required(),
+  };
+  return Joi.validate(user, schema);
 }
 
 exports.User = User;
