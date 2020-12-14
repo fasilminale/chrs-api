@@ -33,36 +33,24 @@ const roomSchema = new mongoose.Schema({
         maxlength: 50,
     },
     roomName: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 50,
-        // type: mongoose.Schema.Types.ObjectId,
-        // ref: 'RoomName'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'RoomName'
     },
     roomType: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 50,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'RoomType'
     },
     bedType: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 50,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'BedType'
     },
     amenities: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 50,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Amentities'
     },
     hotel: {
-        type: String,
-        required: true,
-        minlength: 8,
-        maxlength: 50,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Hotel'
     }
 
 });
