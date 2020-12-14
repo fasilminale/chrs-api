@@ -1,7 +1,6 @@
 const Joi = require('joi')
 const mongoose = require('mongoose')
 
-
 const bedTypeSchema = new mongoose.Schema({
     name: {
         type: String,

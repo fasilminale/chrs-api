@@ -7,23 +7,31 @@ const facilities = require("./routes/facilities")
 const roomNames = require('./routes/roomNames')
 const roomTypes = require('./routes/roomTypes')
 const bedTypes = require('./routes/bedTypes')
+const rates = require('./routes/rates')
+const users = require('./routes/users')
+const rooms = require('./routes/rooms')
+const roles = require('./routes/roles')
 const express = require("express");
 const app = express();
 
 mongoose.connect('mongodb://localhost/chrs')
-  .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error("Could not connect to MongoDB..."))
+    .then(() => console.log('Connected to MongoDB...'))
+    .catch(err => console.error("Could not connect to MongoDB..."))
 
-app.use(express.json());  // this enables pasrsing of json object in the body of a request.
+app.use(express.json()); // this enables pasrsing of json object in the body of a request.
 app.use("/api/customers", customers)
 app.use("/api/categories", categories)
 app.use("/api/facilities", facilities)
 app.use("/api/roomnames", roomNames)
 app.use("/api/roomtypes", roomTypes)
 app.use("/api/bedtypes", bedTypes)
+app.use("/api/rates", rates)
+app.use("/api/users", users)
+app.use("/api/rooms", rooms)
+app.use("/api/roles", roles)
 
 app.get("/", (req, res) => {
-  res.send("Central customer reservation system");
+    res.send("Central customer reservation system");
 });
 
 const port = process.env.PORT | 3000;
