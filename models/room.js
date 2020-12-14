@@ -5,6 +5,7 @@ const roomNameSchema = require("./roomName");
 const roomTypeSchema = require("./roomType");
 const bedTypeSchema = require("./bedType");
 const facilitySchema = require("./facility");
+const hotelSchema = require("./hotel");
 
 const roomSchema = new mongoose.Schema({
   name: {
@@ -50,8 +51,7 @@ const roomSchema = new mongoose.Schema({
     type: facilitySchema,
   },
   hotel: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Hotel",
+    type: hotelSchema,
   },
 });
 
