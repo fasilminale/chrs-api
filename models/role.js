@@ -22,4 +22,3 @@ function validateRole(role) {
 
 exports.Role = Role;
 exports.validate = validateRole;
-//module.exports = mongoose.model('Roles', roleSchema);
