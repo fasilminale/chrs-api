@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
+
+const roomSchema = require("./room");
+const customerSchema = require("./customer");
+const hotelSchema = require("./hotel");
+
 const reservationSchema = new mongoose.Schema({
     bookingNumber: {
         type: String,
@@ -46,9 +51,9 @@ const reservationSchema = new mongoose.Schema({
     },
 });
 
-const Review = mongoose.model("Review", reservationSchema);
+const Reservation = mongoose.model("Reservation", reservationSchema);
 
-function validateReview(review) {
+function validateReservation(reservation) {
     const schema = {
         bookingNumber: Joi.string().min(1).max(254).required(),
         checkInDate: Joi.date().required(),
@@ -61,8 +66,8 @@ function validateReview(review) {
         roomId: Joi.objectId().required(),
         hotelId: Joi.objectId().required(),
     };
-    return Joi.validate(review, schema);
+    return Joi.validate(reservation, schema);
 }
 
-exports.Review = Review;
-exports.validate = validateReview;
+exports.Reservation = Reservation;
+exports.validate = validateReservation;
