@@ -17,20 +17,16 @@ router.post("/", async (req, res) => {
   if (!validPassword) return res.status(400).send("Invalid email or password.");
 
   const token = user.generateAuthToken();
-  res.send(token);
+  res.send({
+    user: _.pick(user, ["_id", "firstName", "lastName", "phone", "email"]),
+    token: token,
+  });
 });
 
 function validate(req) {
   const schema = {
-    email: Joi.string()
-      .min(5)
-      .max(255)
-      .required()
-      .email(),
-    password: Joi.string()
-      .min(5)
-      .max(255)
-      .required()
+    email: Joi.string().min(5).max(255).required().email(),
+    password: Joi.string().min(5).max(255).required(),
   };
   return Joi.validate(req, schema);
 }
