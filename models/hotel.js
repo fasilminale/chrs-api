@@ -5,52 +5,46 @@ const facilitySchema = require("./facility");
 const userSchema = require("./user");
 
 const hotelSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true,
-        minlength: 5,
-        maxlength: 255,
-    },
-    description: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 255,
-    },
-    pictures: {
-        type: [String],
-    },
-    city: {
-        type: String,
-        required: true,
-        minlength: 1,
-        maxlength: 255,
-    },
-    rules: {
-        type: hotelRuleSchema,
-    },
-    facilities: {
-        type: facilitySchema,
-    },
-    manager: {
-        type: userSchema,
-    },
+  name: String,
+  star: String,
+  contactName: String,
+  contactNumber: String,
+  streetAdress: String,
+  city: String,
+  facilities: [String],
+  isParkingAvailable: String,
+  isBreakFastAvailable: String,
+  language: String,
+  isChildrenAllowed: String,
+  isPetsAllowed: String,
 });
 
 const Hotel = mongoose.model("Hotel", hotelSchema);
 
 function validateHotel(hotel) {
-    const schema = {
-        name: Joi.string().min(5).max(255).required(),
-        description: Joi.string().min(5).max(255).required(),
-        pictures: Joi.array().required(),
-        city: Joi.string().min(1).max(255).required(),
-        rulesId: Joi.objectId().required(),
-        fasilitiesId: Joi.objectId().required(),
-        managerId: Joi.objectId().required()
-    };
-    return Joi.validate(hotel, schema);
+  const schema = {
+    hotelName: Joi.string(),
+    star: Joi.string(),
+    contactName: Joi.string(),
+    contactNumber: Joi.string(),
+    streetAdress: Joi.string(),
+    city: Joi.string(),
+    facilities: Joi.array(),
+    isParkingAvailable: Joi.string(),
+    isBreakFastAvailable: Joi.string(),
+    language: Joi.string(),
+    isChildrenAllowed: Joi.string(),
+    isPetsAllowed: Joi.string(),
+
+    roomName: Joi.string(),
+    roomType: Joi.string(),
+    bedType: Joi.string(),
+    quantity: Joi.string(),
+    guestMaxCapacity: Joi.string(),
+    isSmokingAllowed: Joi.string(),
+    price: Joi.string(),
+  };
+  return Joi.validate(hotel, schema);
 }
 
 exports.hotelSchema = hotelSchema;
