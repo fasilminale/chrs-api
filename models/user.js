@@ -69,6 +69,9 @@ function validateUser(user) {
     phone: Joi.string().max(15).required(),
     photo: Joi.string(),
     birthDate: Joi.date().required(),
+    isCustomer: joi.boolean(),
+    isHotelAdmin: joi.boolean(),
+    isSuperAdmin: joi.boolean(),
   };
   return Joi.validate(user, schema);
 }
