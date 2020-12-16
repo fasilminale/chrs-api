@@ -1,4 +1,4 @@
 {
   "jwtPrivateKey": "",
-  "db": "mongodb://localhost/chrs"
+  "db": "mongodb://fasil:azowJQm357dmP9FT@cluster0-shard-00-00-kd8l7.mongodb.net:27017,cluster0-shard-00-01-kd8l7.mongodb.net:27017,cluster0-shard-00-02-kd8l7.mongodb.net:27017/chrs?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true"
 }
