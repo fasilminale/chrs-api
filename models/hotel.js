@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
-const hotelRuleSchema = require("./hotelRule");
-const facilitySchema = require("./facility");
-const userSchema = require("./user");
+const { userSchema } = require("./user");
+const { roomSchema } = require("./room");
 
 const hotelSchema = new mongoose.Schema({
   name: String,
@@ -17,6 +16,11 @@ const hotelSchema = new mongoose.Schema({
   language: String,
   isChildrenAllowed: String,
   isPetsAllowed: String,
+  pictures: [String],
+  manager: {
+    type: userSchema,
+  },
+  rooms: [roomSchema],
 });
 
 const Hotel = mongoose.model("Hotel", hotelSchema);
@@ -35,6 +39,7 @@ function validateHotel(hotel) {
     language: Joi.string(),
     isChildrenAllowed: Joi.string(),
     isPetsAllowed: Joi.string(),
+    pictures: Joi.array(),
 
     roomName: Joi.string(),
     roomType: Joi.string(),
@@ -43,6 +48,7 @@ function validateHotel(hotel) {
     guestMaxCapacity: Joi.string(),
     isSmokingAllowed: Joi.string(),
     price: Joi.string(),
+    userId: Joi.string(),
   };
   return Joi.validate(hotel, schema);
 }

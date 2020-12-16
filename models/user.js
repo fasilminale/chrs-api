@@ -69,12 +69,13 @@ function validateUser(user) {
     phone: Joi.string().max(15).required(),
     photo: Joi.string(),
     birthDate: Joi.date().required(),
-    isCustomer: joi.boolean(),
-    isHotelAdmin: joi.boolean(),
-    isSuperAdmin: joi.boolean(),
+    isCustomer: Joi.boolean(),
+    isHotelAdmin: Joi.boolean(),
+    isSuperAdmin: Joi.boolean(),
   };
   return Joi.validate(user, schema);
 }
 
+exports.userSchema = userSchema;
 exports.User = User;
 exports.validate = validateUser;
