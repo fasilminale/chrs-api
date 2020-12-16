@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 
+const hotelSchema = require("./room");
+const customerSchema = require("./customer");
+const rateSchema = require("./rate");
+
 const reviewSchema = new mongoose.Schema({
     comment: {
         type: String,

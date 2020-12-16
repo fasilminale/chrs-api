@@ -15,14 +15,17 @@ const users = require("./routes/users");
 const auth = require("./routes/auth");
 const rooms = require("./routes/rooms");
 const roles = require("./routes/roles");
+const reviews = require('./routes/reviews');
+const reservations = require('./routes/reservations');
+const hotels = require('./routes/hotels');
 const express = require("express");
 const app = express();
 const db = config.get("db");
 
 mongoose
-  .connect(db)
-  .then(() => console.log("Connected to MongoDB..."))
-  .catch((err) => console.error("Could not connect to MongoDB..."));
+    .connect(db)
+    .then(() => console.log("Connected to MongoDB..."))
+    .catch((err) => console.error("Could not connect to MongoDB..."));
 
 app.use(express.json()); // this enables pasrsing of json object in the body of a request.
 app.use(cors());
@@ -37,9 +40,12 @@ app.use("/api/users", users);
 app.use("/api/auth", auth);
 app.use("/api/rooms", rooms);
 app.use("/api/roles", roles);
+app.use("/api/reviews", reviews);
+app.use("/api/reservations", reservations);
+app.use("/api/hotels", hotels);
 
 app.get("/", (req, res) => {
-  res.send("Central customer reservation system");
+    res.send("Central customer reservation system");
 });
 
 const port = process.env.PORT | 3000;
